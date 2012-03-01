@@ -16,7 +16,7 @@ module MCollective
 		# setup the git repo
                 git = Grit::Git.new(request[:repopath])
 		git.pull
-		reply.data = "Updated #{request[:repopath]}" successfully."
+		reply.data = "Updated #{request[:repopath]} successfully."
                 
             end
 
