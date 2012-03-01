@@ -14,11 +14,17 @@ module MCollective
             action "pull" do
 		validate :repopath, String
 		# setup the git repo
-		repo = Repo.new(request[:repopath])
-		reply.data = "Updating #{request[:repopath]}"
-		repo.pull
-		reply.data = "Update completed"
+                git = Grit::Git.new(request[:repopath])
+		git.pull
+		reply.data = "Updated #{request[:repopath]}" successfully."
                 
+            end
+
+            action "status" do
+		validate :repopath, String
+		# setup the git repo
+		repo = Grit::Repo.new(request[:repopath])
+		reply.data = "Head is #{repo.commits.first.id}\r\n"
             end
 
 	    action "merge" do 
