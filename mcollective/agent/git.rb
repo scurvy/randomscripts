@@ -14,7 +14,7 @@ module MCollective
             action "pull" do
 		validate :repopath, String
 		# setup the git repo
-                git = Grit::Git.new(request[:repopath])
+                git = Grit::Git.new(request[:repopath]+"/.git")
 		git.pull
 		reply.data = "Updated #{request[:repopath]} successfully."
                 
